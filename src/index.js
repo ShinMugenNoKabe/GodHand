@@ -4,5 +4,5 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-await connectToMongoose()
+connectToMongoose()
 startServer()

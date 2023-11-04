@@ -7,14 +7,16 @@ const postSchema = new Schema({
   },
   content: {
     type: String,
-    maxLength: [240, 'Posts must have a maximum of 240 characters.'],
+    maxLength: 240,
     required: true
   },
   created_at: {
-    type: Date, default: Date.now
+    type: Date,
+    default: Date.now
   },
   last_updated_at: {
-    type: Date, default: Date.now
+    type: Date,
+    default: Date.now
   },
   /* likes: [
     {
