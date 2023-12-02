@@ -30,6 +30,25 @@ const testGenerate = async (req, res) => {
   }
 }
 
+const getAllByUsername = async (req, res) => {
+  try {
+    const { limit, skip } = req.query
+    const userPosts = await postRepository.getAllByUsername(req.params.username, limit, skip)
+
+    return res
+      .send({
+        limit,
+        skip,
+        posts: userPosts
+      })
+  } catch (err) {
+    return res
+      .status(400)
+      .send(err)
+  }
+}
+
 export default {
-  testGenerate
+  testGenerate,
+  getAllByUsername
 }

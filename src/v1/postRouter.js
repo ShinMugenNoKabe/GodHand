@@ -1,12 +1,11 @@
 import { Router } from 'express'
 import postController from '../controllers/postController.js'
+import { validatePaginated } from '../middlewares/validatePaginated.js'
 
 const postRouter = new Router()
 
 postRouter
-  .get('/', (req, res) => {
-    res.json({ detail: 'OK' })
-  })
   .post('/', postController.testGenerate)
+  .get('/user/:username', [validatePaginated], postController.getAllByUsername)
 
 export default postRouter
