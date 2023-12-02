@@ -1,7 +1,4 @@
 import jwt from 'jsonwebtoken'
-import { Router } from 'express'
-
-export const tokenRouter = Router()
 
 const generateJWT = (body) => {
   const { JWT_KEY } = process.env
@@ -33,19 +30,16 @@ const validateJWT = (token) => {
     return result
   }
 
-  let decodedJWT = null
-
   const { JWT_KEY } = process.env
 
   try {
-    decodedJWT = jwt.verify(token, JWT_KEY)
+    result.decodedJWT = jwt.verify(token, JWT_KEY)
   } catch (err) {
     result.message = `An error has ocurred while validating the Token: ${err.message}`
     return result
   }
 
   result.success = true
-  result.decodedJWT = decodedJWT
 
   return result
 }
