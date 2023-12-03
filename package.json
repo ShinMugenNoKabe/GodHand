@@ -1,5 +1,5 @@
 {
-  "name": "cheyflon",
+  "name": "GodHand",
   "version": "0.0.1",
   "description": "",
   "type": "module",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShinMugenNoKabe/cheyflon.git"
+    "url": "git+https://github.com/ShinMugenNoKabe/GodHand.git"
   },
   "keywords": [
     "social",
@@ -19,9 +19,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShinMugenNoKabe/cheyflon/issues"
+    "url": "https://github.com/ShinMugenNoKabe/GodHand/issues"
   },
-  "homepage": "https://github.com/ShinMugenNoKabe/cheyflon#readme",
+  "homepage": "https://github.com/ShinMugenNoKabe/GodHand#readme",
   "dependencies": {
     "bcrypt": "5.1.1",
     "cors": "2.8.5",
