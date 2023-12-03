@@ -1,4 +1,4 @@
-import { Post } from '../models/Post.js'
+import { Post, postFieldsToShow } from '../models/Post.js'
 import { User } from '../models/User.js'
 
 const saveNewPost = async (newPost) => {
@@ -6,13 +6,12 @@ const saveNewPost = async (newPost) => {
   return result
 }
 
-const getAllByUsername = async (username, skip, limit) => {
-  if (!username) {
-    throw new Error('Username is empty')
-  }
-
+const getAllByUsername = async (username, limit, skip) => {
   const user = await User
     .findOne({ username })
+    .select([
+      '_id', 'username'
+    ])
     .exec()
 
   if (!user) {
@@ -20,18 +19,28 @@ const getAllByUsername = async (username, skip, limit) => {
   }
 
   const posts = await Post
-    .find({
-      user
-    })
-    .select([
-      '_id', 'content', 'created_at', 'last_updated_at'
-    ])
+    .find({ user })
+    .select(postFieldsToShow)
+    .sort('-created_at')
+    .limit(limit)
+    .skip(skip)
     .exec()
 
   return posts
 }
 
+const getById = async (postId) => {
+  const post = await Post
+    .findOne({ _id: postId })
+    .select(postFieldsToShow)
+    .populate('user', 'username')
+    .exec()
+
+  return post
+}
+
 export default {
   saveNewPost,
-  getAllByUsername
+  getAllByUsername,
+  getById
 }

@@ -34,6 +34,11 @@ const postSchema = new Schema({
 
 const Post = model('Post', postSchema, 'posts')
 
+const postFieldsToShow = [
+  '_id', 'content', 'created_at', 'last_updated_at'
+]
+
 export {
-  Post
+  Post,
+  postFieldsToShow
 }

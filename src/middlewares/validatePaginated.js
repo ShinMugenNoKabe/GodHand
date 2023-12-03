@@ -3,12 +3,11 @@ const validatePaginated = (req, res, next) => {
 
   if (isNaN(limit) || isNaN(skip)) {
     return res
+      .status(400)
       .send({
         detail: 'Limit and Skip parameters must be numbers'
       })
   }
-
-  console.log(limit, skip)
 
   req.query.limit = Number(limit)
   req.query.skip = Number(skip)

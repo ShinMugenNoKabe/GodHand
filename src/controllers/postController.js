@@ -32,8 +32,14 @@ const testGenerate = async (req, res) => {
 
 const getAllByUsername = async (req, res) => {
   try {
+    const { username } = req.params
+
+    if (!username) {
+      throw new Error('Username is empty')
+    }
+
     const { limit, skip } = req.query
-    const userPosts = await postRepository.getAllByUsername(req.params.username, limit, skip)
+    const userPosts = await postRepository.getAllByUsername(username, limit, skip)
 
     return res
       .send({
@@ -48,7 +54,30 @@ const getAllByUsername = async (req, res) => {
   }
 }
 
+const getById = async (req, res) => {
+  const { postId } = req.params
+
+  try {
+    const post = await postRepository.getById(postId)
+
+    if (!post) {
+      return res
+        .status(404)
+        .send({
+          detail: 'Post not found'
+        })
+    }
+
+    return res.send(post)
+  } catch (err) {
+    return res
+      .status(400)
+      .send(err)
+  }
+}
+
 export default {
   testGenerate,
-  getAllByUsername
+  getAllByUsername,
+  getById
 }
