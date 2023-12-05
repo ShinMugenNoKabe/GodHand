@@ -44,25 +44,8 @@ const validateJWT = (token) => {
   return result
 }
 
-const validateJWTMiddleware = (req, res, next) => {
-  const { success, message, decodedJWT } = validateJWT(req.token)
-
-  if (!success) {
-    return res
-      .status(403)
-      .send({
-        detail: message
-      })
-  }
-
-  req.user = decodedJWT
-
-  return next()
-}
-
 export {
   generateJWT,
   generateJWTForUser,
-  validateJWT,
-  validateJWTMiddleware
+  validateJWT
 }

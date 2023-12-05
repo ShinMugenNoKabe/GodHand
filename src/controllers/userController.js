@@ -1,5 +1,5 @@
 import { User } from '../models/User.js'
-import { generateJWTForUser, validateJWT } from './jwtContoller.js'
+import { generateJWTForUser, validateJWT } from './jwtController.js'
 import { compare } from 'bcrypt'
 
 import userRepository from '../repositories/userRepository.js'

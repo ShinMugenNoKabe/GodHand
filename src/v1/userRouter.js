@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import userController from '../controllers/userController.js'
-import { validateJWTMiddleware } from '../controllers/jwtContoller.js'
+import { validateJWTMiddleware } from '../middlewares/validateJWT.js'
 
 const userRouter = new Router()
 
