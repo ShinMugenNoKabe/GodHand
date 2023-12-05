@@ -9,6 +9,7 @@ import postRouter from './v1/postRouter.js'
 import userRouter from './v1/userRouter.js'
 
 const app = express()
+app.disable('x-powered-by')
 app.use(express.json())
 app.use(bearerToken())
 app.use(cors())
